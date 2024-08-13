@@ -216,10 +216,10 @@ export class JSONRPCClient<ClientParams = void>
     method: string,
     params: JSONRPCParams,
     clientParams: ClientParams
-  ): void {
+  ): Promise<void> {
     const request: JSONRPCRequest = createJSONRPCNotification(method, params);
 
-    this.send(request, clientParams).then(undefined, () => undefined);
+    return this.send(request, clientParams);
   }
 
   async send(payload: any, clientParams: ClientParams): Promise<void> {

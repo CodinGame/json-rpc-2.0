@@ -84,8 +84,8 @@ export class JSONRPCServerAndClient<ServerParams = void, ClientParams = void> {
     method: string,
     params: JSONRPCParams,
     clientParams: ClientParams
-  ): void {
-    this.client.notify(method, params, clientParams);
+  ): Promise<void> {
+    return this.client.notify(method, params, clientParams);
   }
 
   rejectAllPendingRequests(message: string): void {
